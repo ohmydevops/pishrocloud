@@ -10,7 +10,7 @@
 Go docs: https://godoc.org/github.com/amirbagh75/pishrocloud
 
 <div dir='rtl'>
-
-توضیحات بیشتر به زودی ...
+  
+در حال حاضر این نسخه نسخه آزمایشی برای ساخت base اولیه میباشد. به زودی با رفتن روی برنچ master مستندات کامل رو در readme قرار میدم.
 
 </div>
