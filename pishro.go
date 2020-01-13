@@ -1,10 +1,13 @@
 package pishrocloud
 
 import (
+	"bytes"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 // Storage ...
@@ -12,12 +15,16 @@ type Storage struct {
 	APIKey           string
 	AuthURL          string
 	SwiftURL         string
+	UserName         string
+	PassWord         string
 	DefaultContainer string // todo: add default container
 }
 
 // MakeRequest ...
 func MakeRequest(Method string, URL string, Token string, Headers map[string]string, Object io.Reader) http.Response {
-	client := http.Client{}
+	client := http.Client{
+		Timeout: time.Second * 10,
+	}
 	request, err := http.NewRequest(Method, URL, Object)
 
 	if err != nil {
@@ -25,7 +32,9 @@ func MakeRequest(Method string, URL string, Token string, Headers map[string]str
 	}
 
 	// Default Headers
-	request.Header.Set("X-Auth-Token", Token)
+	if Token != "" {
+		request.Header.Set("X-Auth-Token", Token)
+	}
 	request.Header.Set("Content-type", "application/json")
 	request.Header.Set("Accept", "application/json")
 
@@ -43,6 +52,33 @@ func MakeRequest(Method string, URL string, Token string, Headers map[string]str
 	}
 
 	return *resp
+}
+
+/*
+	Auth API Functioins
+*/
+
+// RefreshToken ...
+// by default, token exist for 24 hours and you should refresh it every 24h on your program
+func (p *Storage) RefreshToken() bool {
+	var bodyJSON = []byte(
+		fmt.Sprintf("{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\"%s\",\"domain\":{\"name\":\"default\"},\"password\":\"%s\"}}}}}",
+			p.UserName,
+			p.PassWord,
+		),
+	)
+
+	body := bytes.NewReader(bodyJSON)
+	var response = MakeRequest("POST", p.AuthURL, "", nil, body)
+	defer response.Body.Close()
+	statusCode := response.StatusCode
+
+	if statusCode != 201 {
+		return false
+	}
+
+	p.APIKey = response.Header.Get("X-Subject-Token")
+	return true
 }
 
 /*
