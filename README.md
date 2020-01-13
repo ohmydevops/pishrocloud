@@ -7,6 +7,7 @@
 
 `go get -u github.com/amirbagh75/pishrocloud`
 
+Go docs: https://godoc.org/github.com/amirbagh75/pishrocloud
 
 <div dir='rtl'>
 
