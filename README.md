@@ -1,6 +1,6 @@
 <div dir='rtl'>
 
-# پیشرو کلود - [pishrocloud.com](https://pishrocloud.com/)
+# پیشرو کلود - [pishrocloud.com](https://pishrocloud.com/) [![Go Report Card](https://goreportcard.com/badge/github.com/amirbagh75/pishrocloud)](https://goreportcard.com/report/github.com/amirbagh75/pishrocloud)
 کتابخانه Go برای کار با سیستم Swift OpenStack روی بستر پیشروکلود
 
 </div>
