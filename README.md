@@ -9,6 +9,8 @@
 
 Go docs: https://godoc.org/github.com/amirbagh75/pishrocloud
 
+Examples: [link](https://github.com/amirbagh75/pishrocloud/blob/create-base/examples/main.go)
+
 <div dir='rtl'>
   
 در حال حاضر این نسخه آزمایشی برای ساخت base اولیه میباشد. به زودی با رفتن روی برنچ master مستندات کامل رو در readme قرار میدم.
