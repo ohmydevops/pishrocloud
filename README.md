@@ -24,4 +24,6 @@ TODO list:
 - [ ] add default container
 - [ ] can change timeout seconds
 - [ ] add retry on request failure (for example 3 times)
-- [ ] large files? i don't know. i shoud read about.(for example read chunk chunk)
+- [ ] upload/download large files? i don't know. i shoud read about.(for example read chunk chunk)
+- [ ] get metadata of a object
+- [ ] query on metadata and return objects id!
