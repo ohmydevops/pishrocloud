@@ -23,7 +23,7 @@ type Storage struct {
 // MakeRequest ...
 func MakeRequest(Method string, URL string, Token string, Headers map[string]string, Object io.Reader) http.Response {
 	client := http.Client{
-		Timeout: time.Second * 10,
+		Timeout: time.Second * 60,
 	}
 	request, err := http.NewRequest(Method, URL, Object)
 
