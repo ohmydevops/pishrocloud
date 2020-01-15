@@ -14,3 +14,12 @@ Go docs: https://godoc.org/github.com/amirbagh75/pishrocloud
 در حال حاضر این نسخه آزمایشی برای ساخت base اولیه میباشد. به زودی با رفتن روی برنچ master مستندات کامل رو در readme قرار میدم.
 
 </div>
+
+TODO list:
+
+- [ ] error handling
+- [ ] refreshing token due to expired token on request failure
+- [ ] add default container
+- [ ] can change timeout seconds
+- [ ] add retry on request failure (for example 3 times)
+- [ ] large files? i don't know. i shoud read about.(for example read chunk chunk)
