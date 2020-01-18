@@ -8,8 +8,8 @@ func main() {
 		APIKey:   "XXXXXXXXXXXXXXXXXXXXXX",
 		AuthURL:  "http://213.233.176.12:5000/v3/auth/tokens/", // based on this docs: https://blog.pishrocloud.com/pishro-object-storage-doc/
 		SwiftURL: "http://213.233.176.12:8080/swift/v1/",       // based on this docs: https://blog.pishrocloud.com/pishro-object-storage-doc/
-		UserName: "YYYYYYYYYYYY",                               // your pishrocloud panel username: https://pishrocloud.com/authentication/login
-		PassWord: "ZZZZZZZZZZZZ",                               // your pishrocloud panel password: https://pishrocloud.com/authentication/login
+		UserName: "YYYYYYYYYY",                                 // your pishrocloud panel username: https://pishrocloud.com/authentication/login
+		PassWord: "ZZZZZZZZZZ",                                 // your pishrocloud panel password: https://pishrocloud.com/authentication/login
 	}
 
 	// refresh token
@@ -24,7 +24,7 @@ func main() {
 		}
 
 		// upload object to container
-		localFilePath := "/tmp/upload.mp4"
+		localFilePath := "/tmp/v.mp4"
 		objectName := "uuu.mp4"
 
 		// add optional metadata
@@ -49,7 +49,10 @@ func main() {
 		}
 
 		// check object exist or not
-		println(p.IsObjectExist(objectName, containerName))
+		var Object, state = p.IsObjectExist(objectName, containerName)
+		if state {
+			println(Object.ContentType)
+		}
 	} else {
 		println("can't refresh token!")
 	}

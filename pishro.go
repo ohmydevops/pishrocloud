@@ -20,6 +20,14 @@ type Storage struct {
 	DefaultContainer string // todo: add default container
 }
 
+// Object ...
+type Object struct {
+	ContentType string
+	// Size string
+}
+
+var NilObject Object
+
 // MakeRequest ...
 func MakeRequest(Method string, URL string, Token string, Headers map[string]string, Object io.Reader) http.Response {
 	client := http.Client{
@@ -35,7 +43,7 @@ func MakeRequest(Method string, URL string, Token string, Headers map[string]str
 	if Token != "" {
 		request.Header.Set("X-Auth-Token", Token)
 	}
-	request.Header.Set("Content-type", "application/json")
+	// request.Header.Set("Content-type", "application/json")
 	request.Header.Set("Accept", "application/json")
 
 	if Headers != nil {
@@ -147,12 +155,15 @@ func (p *Storage) DownloadObject(path string, fileName string, container string)
 }
 
 // IsObjectExist ...
-func (p *Storage) IsObjectExist(fileName string, container string) bool {
+func (p *Storage) IsObjectExist(fileName string, container string) (Object, bool) {
 	var response = MakeRequest("HEAD", p.SwiftURL+container+"/"+fileName, p.APIKey, nil, nil)
 	statusCode := response.StatusCode
+
 	if statusCode != 200 {
-		return false
+		return NilObject, false
 	}
-	// fmt.Printf("%v", response.Header) : for see metadata
-	return true
+
+	return Object{
+		ContentType: response.Header.Get("Content-Type"),
+	}, true
 }
