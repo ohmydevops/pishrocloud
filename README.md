@@ -27,3 +27,4 @@ TODO list:
 - [ ] upload/download large files? i don't know. i shoud read about.(for example read chunk chunk)
 - [ ] get metadata of a object
 - [ ] query on metadata and return objects id!
+- [ ] add reverse proxy for download public objects
