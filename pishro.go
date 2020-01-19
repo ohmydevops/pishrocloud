@@ -23,7 +23,7 @@ type Storage struct {
 // Object ...
 type Object struct {
 	ContentType string
-	// Size string
+	ObjectID    string
 }
 
 var NilObject Object
