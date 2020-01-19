@@ -165,5 +165,6 @@ func (p *Storage) IsObjectExist(fileName string, container string) (Object, bool
 
 	return Object{
 		ContentType: response.Header.Get("Content-Type"),
+		ObjectID:    fileName
 	}, true
 }
