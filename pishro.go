@@ -168,3 +168,15 @@ func (p *Storage) IsObjectExist(fileName string, container string) (Object, bool
 		ObjectID:    fileName,
 	}, true
 }
+
+// DeleteObject ...
+func (p *Storage) DeleteObject(fileName string, container string) bool {
+	var response = MakeRequest("DELETE", p.SwiftURL+container+"/"+fileName, p.APIKey, nil, nil)
+	statusCode := response.StatusCode
+
+	if statusCode != 204 {
+		return false
+	}
+
+	return true
+}
