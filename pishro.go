@@ -48,9 +48,10 @@ func (p *Storage) MakeRequest(Method string, URL string, Token string, Headers m
 		p.RefreshToken()
 	}
 	// Default Headers
-	if Token != "" {
-		request.Header.Set("X-Auth-Token", Token)
-	}
+	request.Header.Set("X-Auth-Token", p.APIKey)
+	// if p.APIKey != "" {
+	// 	request.Header.Set("X-Auth-Token", p.APIKey)
+	// }
 	request.Header.Set("Accept", "application/json")
 
 	if Headers != nil {
