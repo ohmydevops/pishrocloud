@@ -12,12 +12,11 @@ import (
 
 // Storage struct ...
 type Storage struct {
-	APIKey           string
-	AuthURL          string
-	SwiftURL         string
-	UserName         string
-	PassWord         string
-	DefaultContainer string // todo: add default container
+	APIKey   string
+	AuthURL  string
+	SwiftURL string
+	UserName string
+	PassWord string
 }
 
 // Object ...
@@ -180,4 +179,21 @@ func (p *Storage) DeleteObject(fileName string, container string) bool {
 	}
 
 	return true
+}
+
+// GetObjectMetaData ...
+func (p *Storage) GetObjectMetaData(fileName string, container string) (bool, map[string]string) {
+	var response = MakeRequest("HEAD", p.SwiftURL+container+"/"+fileName, p.APIKey, nil, nil)
+	statusCode := response.StatusCode
+
+	if statusCode != 200 {
+		return false, nil
+	}
+	ObjectMetadata := make(map[string]string)
+	for name, values := range response.Header {
+		for _, value := range values {
+			ObjectMetadata[name] = value
+		}
+	}
+	return true, ObjectMetadata
 }
