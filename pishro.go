@@ -83,11 +83,11 @@ func (p *Storage) RefreshToken() {
 	statusCode := response.StatusCode
 
 	if statusCode != 201 {
-		log.Fatalln("failed")
+		log.Fatalln("failure in refreshing token")
 	}
 
 	p.APIKey = response.Header.Get("X-Subject-Token")
-	log.Println("success")
+	log.Println("successfully refreshed token")
 }
 
 /*
