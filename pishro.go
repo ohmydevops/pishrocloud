@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// Storage ...
+// Storage struct ...
 type Storage struct {
 	APIKey           string
 	AuthURL          string
@@ -68,6 +68,7 @@ func MakeRequest(Method string, URL string, Token string, Headers map[string]str
 
 // RefreshToken ...
 // by default, token exist for 24 hours and you should refresh it every 24h on your program
+// i will write a scenario for this.
 func (p *Storage) RefreshToken() {
 	var bodyJSON = []byte(
 		fmt.Sprintf("{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\"%s\",\"domain\":{\"name\":\"default\"},\"password\":\"%s\"}}}}}",
