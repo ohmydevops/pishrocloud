@@ -21,7 +21,6 @@ TODO list:
 
 - [ ] error handling
 - [ ] refreshing token due to expired token on request failure
-- [ ] add default container
 - [ ] can change timeout seconds
 - [ ] add retry on request failure (for example 3 times)
 - [ ] upload/download large files? i don't know. i shoud read about.(for example read chunk chunk)
