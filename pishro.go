@@ -68,7 +68,7 @@ func MakeRequest(Method string, URL string, Token string, Headers map[string]str
 
 // RefreshToken ...
 // by default, token exist for 24 hours and you should refresh it every 24h on your program
-func (p *Storage) RefreshToken() bool {
+func (p *Storage) RefreshToken() {
 	var bodyJSON = []byte(
 		fmt.Sprintf("{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\"%s\",\"domain\":{\"name\":\"default\"},\"password\":\"%s\"}}}}}",
 			p.UserName,
@@ -82,11 +82,11 @@ func (p *Storage) RefreshToken() bool {
 	statusCode := response.StatusCode
 
 	if statusCode != 201 {
-		return false
+		log.Fatalln("failed")
 	}
 
 	p.APIKey = response.Header.Get("X-Subject-Token")
-	return true
+	log.Fatalln("success")
 }
 
 /*
