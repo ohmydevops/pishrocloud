@@ -86,7 +86,7 @@ func (p *Storage) RefreshToken() {
 	}
 
 	p.APIKey = response.Header.Get("X-Subject-Token")
-	log.Fatalln("success")
+	log.Println("success")
 }
 
 /*
